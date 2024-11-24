@@ -102,6 +102,11 @@ public class main extends javax.swing.JFrame {
         jbooking.setIconTextGap(-5);
         jbooking.setPreferredSize(new java.awt.Dimension(127, 81));
         jbooking.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbookingActionPerformed(evt);
+            }
+        });
         getContentPane().add(jbooking, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 140, 70));
 
         jcancelb.setBackground(new java.awt.Color(204, 255, 204));
@@ -112,6 +117,11 @@ public class main extends javax.swing.JFrame {
         jcancelb.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jcancelb.setIconTextGap(-5);
         jcancelb.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jcancelb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcancelbActionPerformed(evt);
+            }
+        });
         getContentPane().add(jcancelb, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, 140, 70));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -194,6 +204,14 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
         new guestdetailsbills().setVisible(true);
     }//GEN-LAST:event_jpaymentActionPerformed
+
+    private void jbookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbookingActionPerformed
+       new booking().setVisible(true);
+    }//GEN-LAST:event_jbookingActionPerformed
+
+    private void jcancelbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcancelbActionPerformed
+        new cancelbooking().setVisible(true);
+    }//GEN-LAST:event_jcancelbActionPerformed
 
     /**
      * @param args the command line arguments

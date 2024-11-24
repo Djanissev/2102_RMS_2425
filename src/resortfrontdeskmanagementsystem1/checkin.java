@@ -70,7 +70,7 @@ public class checkin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 48)); // NOI18N
         jLabel1.setText("Customer CheckIN");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 430, 80));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 450, 80));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("Name:");
@@ -154,6 +154,11 @@ public class checkin extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton2.setText("Allote Room");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 530, -1, -1));
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -203,6 +208,10 @@ public class checkin extends javax.swing.JFrame {
             System.out.println ("User chose to stay on the current page.");
         }
     }//GEN-LAST:event_jBackButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
