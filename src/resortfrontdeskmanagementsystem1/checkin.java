@@ -119,7 +119,7 @@ public class checkin extends javax.swing.JFrame {
         getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 370, 210, -1));
 
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Double", "Faamily" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "         ", "Single", "Double", "Family" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 210, 190, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -138,7 +138,7 @@ public class checkin extends javax.swing.JFrame {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 400, -1, -1));
 
         jComboBox2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Room", "Cottage" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "            ", "Room", "Cottage" }));
         getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 280, 190, -1));
 
         jComboBox3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
