@@ -86,6 +86,11 @@ public class main extends javax.swing.JFrame {
         jpayment.setIconTextGap(-5);
         jpayment.setPreferredSize(new java.awt.Dimension(127, 81));
         jpayment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jpayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpaymentActionPerformed(evt);
+            }
+        });
         getContentPane().add(jpayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 220, 140, 70));
 
         jbooking.setBackground(new java.awt.Color(204, 255, 204));
@@ -164,10 +169,12 @@ public class main extends javax.swing.JFrame {
 
     private void jcheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcheckinActionPerformed
         // TODO add your handling code here:
+        new checkin().setVisible(true);
     }//GEN-LAST:event_jcheckinActionPerformed
 
     private void jcheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcheckoutActionPerformed
         // TODO add your handling code here:
+        new checkout().setVisible(true);
     }//GEN-LAST:event_jcheckoutActionPerformed
 
     private void jroomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jroomsActionPerformed
@@ -182,6 +189,11 @@ public class main extends javax.swing.JFrame {
         l.setVisible(true);
         
     }//GEN-LAST:event_jlogoutbuttonActionPerformed
+
+    private void jpaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpaymentActionPerformed
+        // TODO add your handling code here:
+        new guestdetailsbills().setVisible(true);
+    }//GEN-LAST:event_jpaymentActionPerformed
 
     /**
      * @param args the command line arguments
