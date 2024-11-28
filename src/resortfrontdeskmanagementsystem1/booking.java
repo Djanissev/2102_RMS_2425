@@ -18,6 +18,26 @@ public class booking extends javax.swing.JFrame {
      */
     public booking() {
         initComponents();
+        jbookingTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        
+            @Override
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+        int row = jbookingTable.getSelectedRow();
+        // Populate the form fields based on the selected row
+        bookingID.setText(jbookingTable.getValueAt(row, 0).toString());
+        guestID.setText(jbookingTable.getValueAt(row, 1).toString());
+        name.setText(jbookingTable.getValueAt(row, 2).toString());
+        email.setText(jbookingTable.getValueAt(row, 3).toString());
+        downPayment.setText(jbookingTable.getValueAt(row, 4).toString());
+        number.setText(jbookingTable.getValueAt(row, 5).toString());
+        peopleNumber.setText(jbookingTable.getValueAt(row, 6).toString());
+        paymentMethod.setSelectedItem(jbookingTable.getValueAt(row, 7).toString());
+        bookingDate.setText(jbookingTable.getValueAt(row, 8).toString());
+        bookingType.setSelectedItem(jbookingTable.getValueAt(row, 9).toString());
+        
+        
+    }
+});
     }
 
     /**
@@ -42,9 +62,9 @@ public class booking extends javax.swing.JFrame {
         bookingType = new javax.swing.JComboBox<>();
         jsubmitbutton = new javax.swing.JButton();
         jclearbutton = new javax.swing.JButton();
-        jaddListbutton = new javax.swing.JButton();
+        jdeletebutton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jbookingTable = new javax.swing.JTable();
         jbackbutton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -57,6 +77,9 @@ public class booking extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         paymentMethod = new javax.swing.JComboBox<>();
         checkbox = new java.awt.Checkbox();
+        jlabel = new javax.swing.JLabel();
+        downPayment = new javax.swing.JTextField();
+        jupdatebutton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,7 +104,7 @@ public class booking extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("Type of Booking");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 180, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 330, -1, -1));
         getContentPane().add(guestID, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 100, 60, 30));
         getContentPane().add(bookingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 280, -1));
 
@@ -91,7 +114,7 @@ public class booking extends javax.swing.JFrame {
                 bookingTypeActionPerformed(evt);
             }
         });
-        getContentPane().add(bookingType, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 180, 280, -1));
+        getContentPane().add(bookingType, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 330, 280, -1));
 
         jsubmitbutton.setText("Submit");
         jsubmitbutton.addActionListener(new java.awt.event.ActionListener() {
@@ -109,34 +132,31 @@ public class booking extends javax.swing.JFrame {
         });
         getContentPane().add(jclearbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
 
-        jaddListbutton.setText("Add List");
-        jaddListbutton.addActionListener(new java.awt.event.ActionListener() {
+        jdeletebutton.setText("Delete");
+        jdeletebutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jaddListbuttonActionPerformed(evt);
+                jdeletebuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jaddListbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 390, -1, -1));
+        getContentPane().add(jdeletebutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 390, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jbookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Booking No.", "Guest No.", "Name", "Email", "Number", "Booking Date", "Type of Booking", "Number of People", "Payment Method"
+                "Booking No.", "Guest No.", "Name", "Email", "Down Payment", "Number", "Number of People", "Payment Method", "Booking Date", "Type of Booking"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jbookingTable);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 870, 230));
 
@@ -164,8 +184,8 @@ public class booking extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setText("Number of People");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 230, -1, -1));
-        getContentPane().add(peopleNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 230, 280, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 180, -1, -1));
+        getContentPane().add(peopleNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 180, 280, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("Payment Method");
@@ -177,7 +197,20 @@ public class booking extends javax.swing.JFrame {
         checkbox.setBackground(java.awt.Color.lightGray);
         checkbox.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         checkbox.setLabel("Agreements to Terms and Conditions");
-        getContentPane().add(checkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 330, 270, -1));
+        getContentPane().add(checkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 360, 270, -1));
+
+        jlabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jlabel.setText("Down Payment");
+        getContentPane().add(jlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 230, -1, -1));
+        getContentPane().add(downPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 230, 280, -1));
+
+        jupdatebutton.setText("Update");
+        jupdatebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jupdatebuttonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jupdatebutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 390, -1, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg3.jpg"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 710));
@@ -186,27 +219,12 @@ public class booking extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jsubmitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsubmitbuttonActionPerformed
-        // TODO add your handling code here:
-        String bookingNumber = bookingID.getText();
-        String guestNumber = guestID.getText();
-        String bookingDateValue = bookingDate.getText();
-        String bookingTypeValue = (String) bookingType.getSelectedItem();
+        DefaultTableModel model = (DefaultTableModel) jbookingTable.getModel();
+        model.addRow(new Object[]{bookingID.getText(), guestID.getText(), name.getText(), email.getText(),
+                                  downPayment.getText(), number.getText(), peopleNumber.getText(), paymentMethod.getSelectedItem(),
+                                  bookingDate.getText(), bookingType.getSelectedItem()
+        });
         
-        if (bookingNumber.isEmpty() || guestNumber.isEmpty() || bookingDateValue.isEmpty() || bookingTypeValue.trim().equals("         ")) {
-        JOptionPane.showMessageDialog(this, "Please fill all the fields correctly.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            String submissionMessage = "Booking Number: " + bookingNumber + "\n"
-                + "Guest Number: " + guestNumber + "\n"
-                + "Booking Date: " + bookingDateValue + "\n"
-                + "Booking Type: " + bookingTypeValue;
-            
-        JOptionPane.showMessageDialog(this, submissionMessage, "Booking Details Submitted", JOptionPane.INFORMATION_MESSAGE);
-        
-            bookingID.setText("");
-            guestID.setText("");
-            bookingDate.setText("");
-            bookingType.setSelectedIndex(0);
-        }
     }//GEN-LAST:event_jsubmitbuttonActionPerformed
 
     private void jclearbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jclearbuttonActionPerformed
@@ -218,16 +236,32 @@ public class booking extends javax.swing.JFrame {
         email.setText("  ");
         number.setText("  ");
         peopleNumber.setText("  ");
+        downPayment.setText("  ");
+        bookingType.setSelectedIndex(0);
+        paymentMethod.setSelectedIndex(0);
+        checkbox.setState(false);
+        
     }//GEN-LAST:event_jclearbuttonActionPerformed
 
-    private void jaddListbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jaddListbuttonActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        model.addRow(new Object[]{bookingID.getText(), guestID.getText(),
-                                    name.getText(), email.getText(),
-                                    number.getText(), peopleNumber.getText(), paymentMethod.getSelectedItem(),
-                                    bookingDate.getText(), bookingType.getSelectedItem()});
-    }//GEN-LAST:event_jaddListbuttonActionPerformed
+    private void jdeletebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdeletebuttonActionPerformed
+          DefaultTableModel model = (DefaultTableModel) jbookingTable.getModel();
+    int selectedRow = jbookingTable.getSelectedRow();
+
+    if (selectedRow != -1) {
+        // Show a confirmation dialog before deleting
+        int response = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to delete this booking?",
+                "Confirm Deletion",
+                JOptionPane.YES_NO_OPTION);
+
+        if (response == JOptionPane.YES_OPTION) {
+            // If the user confirms, remove the selected row
+            model.removeRow(selectedRow);
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select a row to delete", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jdeletebuttonActionPerformed
 
     private void jbackbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbackbuttonActionPerformed
 
@@ -251,6 +285,31 @@ public class booking extends javax.swing.JFrame {
     private void bookingTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bookingTypeActionPerformed
+
+    private void jupdatebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jupdatebuttonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jbookingTable.getModel();
+    int selectedRow = jbookingTable.getSelectedRow();
+    
+    if (selectedRow != -1) {
+        // Update the values in the selected row with the data from input fields
+        model.setValueAt(bookingID.getText(), selectedRow, 0);
+        model.setValueAt(guestID.getText(), selectedRow, 1);
+        model.setValueAt(name.getText(), selectedRow, 2);
+        model.setValueAt(email.getText(), selectedRow, 3);
+        model.setValueAt(downPayment.getText(), selectedRow, 4);
+        model.setValueAt(number.getText(), selectedRow, 5);
+        model.setValueAt(peopleNumber.getText(), selectedRow, 6);
+        model.setValueAt(paymentMethod.getSelectedItem(), selectedRow, 7);
+        model.setValueAt(bookingDate.getText(), selectedRow, 8);
+        model.setValueAt(bookingType.getSelectedItem(), selectedRow, 9);
+        
+        
+        
+        JOptionPane.showMessageDialog(this, "Booking updated successfully!");
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select a row to update", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jupdatebuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,6 +348,7 @@ public class booking extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private java.awt.Checkbox checkbox;
+    private javax.swing.JTextField downPayment;
     private javax.swing.JTextField email;
     private javax.swing.JTextField guestID;
     private javax.swing.JLabel jLabel1;
@@ -303,11 +363,13 @@ public class booking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton jaddListbutton;
     private javax.swing.JButton jbackbutton;
+    private javax.swing.JTable jbookingTable;
     private javax.swing.JButton jclearbutton;
+    private javax.swing.JButton jdeletebutton;
+    private javax.swing.JLabel jlabel;
     private javax.swing.JButton jsubmitbutton;
+    private javax.swing.JButton jupdatebutton;
     private javax.swing.JTextField name;
     private javax.swing.JTextField number;
     private javax.swing.JComboBox<String> paymentMethod;

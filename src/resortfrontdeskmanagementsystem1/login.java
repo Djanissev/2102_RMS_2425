@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+
 /**
  *
  * @author djani
@@ -45,6 +46,7 @@ public class login extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jshowpass = new javax.swing.JCheckBox();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -130,6 +132,14 @@ public class login extends javax.swing.JFrame {
         jButton1.setText("jButton1");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 10, -1, -1));
 
+        jshowpass.setText("Show password");
+        jshowpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jshowpassActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jshowpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 400, -1, -1));
+
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loginbg.png"))); // NOI18N
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -160,6 +170,15 @@ public class login extends javax.swing.JFrame {
     private void jpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpassActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jpassActionPerformed
+
+    private void jshowpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jshowpassActionPerformed
+        // TODO add your handling code here:
+           if (jshowpass.isSelected()) {
+            jpass.setEchoChar((char) 0); // Show the password (no mask)
+        } else {
+            jpass.setEchoChar('*'); // Mask the password with '*'
+        }
+    }//GEN-LAST:event_jshowpassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,6 +231,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JButton jloginbutton;
     private javax.swing.JPasswordField jpass;
+    private javax.swing.JCheckBox jshowpass;
     private javax.swing.JButton jsignupbutton;
     private javax.swing.JTextField juname;
     // End of variables declaration//GEN-END:variables

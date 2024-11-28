@@ -8,6 +8,7 @@ package resortfrontdeskmanagementsystem1;
  *
  * @author djani
  */
+import javax.swing.table.DefaultTableModel;
 public class room extends javax.swing.JFrame {
 
     /**

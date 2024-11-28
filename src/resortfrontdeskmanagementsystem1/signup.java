@@ -3,7 +3,6 @@ package resortfrontdeskmanagementsystem1;
 import Database.signuplogindb;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import javax.swing.*;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -40,6 +39,7 @@ public class signup extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jshowpass = new javax.swing.JCheckBox();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,7 +102,7 @@ public class signup extends javax.swing.JFrame {
                 jsignupbuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jsignupbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, 330, 38));
+        getContentPane().add(jsignupbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 630, 330, 38));
 
         jloginbutton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jloginbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/key_1.png"))); // NOI18N
@@ -115,7 +115,7 @@ public class signup extends javax.swing.JFrame {
                 jloginbuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jloginbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 670, 100, 38));
+        getContentPane().add(jloginbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 680, 100, 38));
 
         jLabel6.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 51));
@@ -139,6 +139,14 @@ public class signup extends javax.swing.JFrame {
 
         jButton2.setText("jButton2");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 10, -1, -1));
+
+        jshowpass.setText("Show password");
+        jshowpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jshowpassActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jshowpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/signupbg.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -168,6 +176,14 @@ public class signup extends javax.swing.JFrame {
         l.setLocationRelativeTo(null);//center the form
         l.setVisible(true);
     }//GEN-LAST:event_jloginbuttonActionPerformed
+
+    private void jshowpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jshowpassActionPerformed
+         if (jshowpass.isSelected()) {
+            jpass.setEchoChar((char) 0); // Show the password (no mask)
+        } else {
+            jpass.setEchoChar('*'); // Mask the password with '*'
+        }
+    }//GEN-LAST:event_jshowpassActionPerformed
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new signup().setVisible(true));
@@ -195,6 +211,7 @@ public class signup extends javax.swing.JFrame {
     private javax.swing.JTextField jlname;
     private javax.swing.JButton jloginbutton;
     private javax.swing.JPasswordField jpass;
+    private javax.swing.JCheckBox jshowpass;
     private javax.swing.JButton jsignupbutton;
     private javax.swing.JTextField juname;
     // End of variables declaration//GEN-END:variables

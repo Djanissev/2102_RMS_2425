@@ -10,8 +10,12 @@ package resortfrontdeskmanagementsystem1;
  * @author Maricris
  * 
  */
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;  
+import database.*;
 
 
 public class checkout extends javax.swing.JFrame {
@@ -21,7 +25,25 @@ public class checkout extends javax.swing.JFrame {
      */
     public checkout() {
         initComponents();
+        jcustomername.setEditable(true);
+        jemail.setEditable(true);
+        jroomnumber.setEditable(true);
+        jpriceperday.setEditable(true);
+        jcheckindate.setEditable(true);
+        jnumberdaysofstay.setEditable(true);
+        jcheckoutdate.setEditable(false);
+     
+        SimpleDateFormat myFormat= new SimpleDateFormat("yyyy/MM/dd");
+        Calendar cal= Calendar.getInstance();
+        jcheckoutdate.setText(myFormat.format(cal.getTime()));
+
     }
+    int id = 0;
+    String Query;
+    String roomandcottageType;
+    String roomSize;
+    String roomandcottageNumber;
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,30 +56,35 @@ public class checkout extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jemail = new javax.swing.JTextField();
+        jsearchbutton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        jroomnumber = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        jpriceperday = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        jcheckindate = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        jnumberdaysofstay = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jcheckoutdate = new javax.swing.JTextField();
+        jcheckoutbutton = new javax.swing.JButton();
+        jclearbutton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jbackbutton = new javax.swing.JButton();
-        jTextField14 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jcustomername = new javax.swing.JTextField();
+        jsearch = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1100, 500));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 48)); // NOI18N
@@ -68,20 +95,20 @@ public class checkout extends javax.swing.JFrame {
         jLabel3.setText("Email:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 580, -1, -1));
 
-        jTextField6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 610, 150, -1));
+        jemail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(jemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 610, 150, -1));
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jsearchbutton.setText("Search");
+        jsearchbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jsearchbuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 150, -1, -1));
+        getContentPane().add(jsearchbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 150, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel7.setText("Room Number:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, -1, 30));
+        jLabel7.setText("Room and Cottage Number:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, 30));
 
         jTextField7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 150, 0));
@@ -90,59 +117,59 @@ public class checkout extends javax.swing.JFrame {
         jLabel8.setText("Customer Name:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, -1, -1));
 
-        jTextField9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 240, 30));
+        jroomnumber.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        getContentPane().add(jroomnumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 240, 30));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setText("Price Per Day:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, -1, -1));
 
-        jTextField10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 150, -1));
+        jpriceperday.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(jpriceperday, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 150, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("Check IN Date:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, -1, -1));
 
-        jTextField11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 400, 150, -1));
+        jcheckindate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(jcheckindate, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 400, 150, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setText("Number Days Of Stay:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
 
-        jTextField12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, 150, -1));
+        jnumberdaysofstay.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(jnumberdaysofstay, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, 150, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel11.setText("Check OUT Date (Today):");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, -1, -1));
 
-        jTextField13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 540, 150, -1));
+        jcheckoutdate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(jcheckoutdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 540, 150, -1));
 
-        jButton2.setText("Check Out");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jcheckoutbutton.setText("Check Out");
+        jcheckoutbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jcheckoutbuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 680, -1, -1));
+        getContentPane().add(jcheckoutbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 680, -1, -1));
 
-        jButton3.setText("Clear");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jclearbutton.setText("Clear");
+        jclearbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jclearbuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 680, -1, -1));
+        getContentPane().add(jclearbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 680, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name", "Mobile Number", "Email", "ID Proof", "Address", "Check In Date", "Room/Cottage Types", "Room/Cottage Number", "Price Per Day"
+                "ID", "Name", "Mobile Number", "Email", "ID Proof", "Address", "Check In Date", "Room and Cottage Types", "Room and Cottage Number", "Price Per Day"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -157,50 +184,54 @@ public class checkout extends javax.swing.JFrame {
         });
         getContentPane().add(jbackbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 40, -1, 20));
 
-        jTextField14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        getContentPane().add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 150, -1));
+        jcustomername.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(jcustomername, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 150, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/formsbg.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 760));
+        jsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/formsbg.png"))); // NOI18N
+        jsearch.setText("jLabel4");
+        getContentPane().add(jsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 760));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jclearbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jclearbuttonActionPerformed
         // TODO add your handling code here:
-        jTextField6.setText("");
+        jcustomername.setText("");
+        jemail.setText("");
         jTextField7.setText("");
-        jTextField9.setText("");
-        jTextField10.setText("");
-        jTextField11.setText("");
-        jTextField12.setText("");
-        jTextField13.setText("");
-        jTextField14.setText("");  
+        jroomnumber.setText("");
+        jpriceperday.setText("");
+        jcheckindate.setText("");
+        jnumberdaysofstay.setText("");
+        jcheckoutdate.setText("");
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jclearbuttonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jcheckoutbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcheckoutbuttonActionPerformed
         // TODO add your handling code here:
-         String id = jTextField6.getText();
-         String name = jTextField14.getText();
+         String email = jemail.getText();
+         String name = jcustomername.getText();
          String mobileNumber = jTextField7.getText();
-         String email = jTextField9.getText();
-         String idProof = jTextField10.getText();
-         String address = jTextField11.getText();
-         String checkInDate = jTextField12.getText();
-         String roomType = jTextField13.getText();
-         String roomNumber = jTextField7.getText(); 
-         String pricePerDay = jTextField10.getText();
+         String roomNumber = jroomnumber.getText();
+         String pricePerDay = jpriceperday.getText();
+         String checkInDate = jcheckindate.getText();
+         String numberdaysofstay = jnumberdaysofstay.getText();
+         String checkoutdate = jcheckoutdate.getText();
          
-         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+         if (name.isEmpty() || email.isEmpty() || mobileNumber.isEmpty() || roomNumber.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in all required fields.");
+            return; // Stop the execution if validation fails
+        }
          
-          model.addRow(new Object[]{
-        id, name, mobileNumber, email, idProof, address, checkInDate, roomType, roomNumber, pricePerDay
-    });
+          DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.addRow(new Object[]{
+            id, name, mobileNumber, email, "ID Proof", "Address", checkInDate, "Room Type", roomNumber, pricePerDay
+        });
+        
+        JOptionPane.showMessageDialog(null, "Checkout Complete!");
 
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jcheckoutbuttonActionPerformed
 
     private void jbackbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbackbuttonActionPerformed
         int response = JOptionPane.showConfirmDialog(this,
@@ -220,9 +251,79 @@ public class checkout extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbackbuttonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jsearchbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsearchbuttonActionPerformed
+       String customerName = jcustomername.getText();
+       String email = jemail.getText();
+       
+        String query = "SELECT * FROM customer WHERE checkOut IS NULL";
+        
+        if (!customerName.isEmpty()) {
+        query += " AND customerName LIKE '%" + customerName + "%'";
+       }
+       if (!email.isEmpty()) {
+        query += " AND email LIKE '%" + email + "%'";
+       }
+       
+       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+       model.setRowCount(0); 
+       
+        try {
+        // Execute the query
+        ResultSet rs = Select.getData(query);
+        
+        // Populate the JTable with data from the ResultSet
+        while (rs.next()) {
+            model.addRow(new Object[]{
+                rs.getString(1),  // Customer ID
+                rs.getString(2),  // Customer Name
+                rs.getString(3),  // Address
+                rs.getString(4),  // Contact Number
+                rs.getString(5),  // Email
+                rs.getString(6),  // Check-in Date
+                rs.getString(7),  // Check-out Date
+                rs.getString(8),  // Room Number
+                rs.getString(9),  // Number of Days
+                rs.getString(10), // Price per Day
+                rs.getString(11), // Total Price
+                rs.getString(12)  // Status
+            });
+            
+             }
+        rs.close();  // Don't forget to close the ResultSet
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+    }
+       
+       
+    }//GEN-LAST:event_jsearchbuttonActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+       ResultSet rs = Select.getData("SELECT * FROM customer WHERE checkOut IS NULL");
+       DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+       try
+       {
+          while (rs.next()) {
+            model.addRow(new Object[] {
+                rs.getString(1),  
+                rs.getString(2), 
+                rs.getString(3), 
+                rs.getString(4),  
+                rs.getString(5),  
+                rs.getString(6),  
+                rs.getString(7),  
+                rs.getString(8),  
+                rs.getString(9),  
+                rs.getString(10), 
+                rs.getString(11), 
+                rs.getString(12)
+            });
+       }
+          rs.close();
+       }
+        catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+    }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -260,28 +361,28 @@ public class checkout extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JButton jbackbutton;
+    private javax.swing.JTextField jcheckindate;
+    private javax.swing.JButton jcheckoutbutton;
+    private javax.swing.JTextField jcheckoutdate;
+    private javax.swing.JButton jclearbutton;
+    private javax.swing.JTextField jcustomername;
+    private javax.swing.JTextField jemail;
+    private javax.swing.JTextField jnumberdaysofstay;
+    private javax.swing.JTextField jpriceperday;
+    private javax.swing.JTextField jroomnumber;
+    private javax.swing.JLabel jsearch;
+    private javax.swing.JButton jsearchbutton;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,8 +35,6 @@ public class cancelbooking extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        bookingID = new javax.swing.JTextField();
-        bookingDate = new javax.swing.JTextField();
         jbackbutton = new javax.swing.JButton();
         reason = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -45,15 +43,17 @@ public class cancelbooking extends javax.swing.JFrame {
         jclearbutton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        name = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
-        number = new javax.swing.JTextField();
         checkbox1 = new java.awt.Checkbox();
         jsubmitbutton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         refundAmount = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        bookingID = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        bookingDate = new javax.swing.JTextField();
+        number = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,8 +78,6 @@ public class cancelbooking extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("Reason");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 270, -1, -1));
-        getContentPane().add(bookingID, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 92, 70, 30));
-        getContentPane().add(bookingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 200, 280, -1));
 
         jbackbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,13 +137,10 @@ public class cancelbooking extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("Number");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, -1, -1));
-        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 280, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel8.setText("Email");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, -1, -1));
-        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, 280, -1));
-        getContentPane().add(number, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 280, -1));
 
         checkbox1.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         checkbox1.setLabel("Agreements to Terms and Conditions");
@@ -163,9 +158,20 @@ public class cancelbooking extends javax.swing.JFrame {
         jLabel10.setText("Refund Amount");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, -1, -1));
         getContentPane().add(refundAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 320, 280, -1));
+        getContentPane().add(bookingID, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 92, 90, 30));
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 270, -1));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 270, -1));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg3.jpg"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 700));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 270, -1));
+        getContentPane().add(bookingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 200, 280, -1));
+
+        number.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg3.jpg"))); // NOI18N
+        getContentPane().add(number, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -203,7 +209,7 @@ public class cancelbooking extends javax.swing.JFrame {
         cancellationID.setText("  ");
         bookingID.setText("  ");
         bookingDate.setText("  ");
-        name.setText("  ");
+        email.setText("  ");
         email.setText("  ");
         number.setText("  ");
         refundAmount.setText("  ");
@@ -216,6 +222,10 @@ public class cancelbooking extends javax.swing.JFrame {
     private void jsubmitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsubmitbuttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jsubmitbuttonActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,15 +274,15 @@ public class cancelbooking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jaddListbutton;
     private javax.swing.JButton jbackbutton;
     private javax.swing.JButton jclearbutton;
     private javax.swing.JButton jsubmitbutton;
     private javax.swing.JTextField name;
-    private javax.swing.JTextField number;
+    private javax.swing.JLabel number;
     private javax.swing.JComboBox<String> reason;
     private javax.swing.JTextField refundAmount;
     // End of variables declaration//GEN-END:variables
